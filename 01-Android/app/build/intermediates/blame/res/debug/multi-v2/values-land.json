@@ -1,0 +1,41 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\App-moviles\\mov-comp-burbano-rosero-cinthia-mayte\\01-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
+            "map": [
+                {
+                    "source": "D:\\App-moviles\\mov-comp-burbano-rosero-cinthia-mayte\\01-Android\\app\\src\\main\\res\\values-land\\string.xml",
+                    "from": {
+                        "startLines": "3,-1",
+                        "startColumns": "4,-1",
+                        "startOffsets": "112,-1",
+                        "endColumns": "40,-1",
+                        "endOffsets": "148,-1"
+                    },
+                    "to": {
+                        "startLines": "2,6",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,305",
+                        "endColumns": "40,52",
+                        "endOffsets": "91,353"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\AdminGamma\\.gradle\\caches\\transforms-2\\files-2.1\\38d73252397e14f6b2ca8374e68e18f7\\appcompat-1.1.0\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1",
+                        "startColumns": "-1,-1,-1",
+                        "startOffsets": "-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "3,4,5",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "96,166,237",
+                        "endColumns": "69,70,67",
+                        "endOffsets": "161,232,300"
+                    }
+                }
+            ]
+        }
+    ]
+}

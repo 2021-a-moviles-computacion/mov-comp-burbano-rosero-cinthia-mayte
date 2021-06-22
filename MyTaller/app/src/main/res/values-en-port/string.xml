@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Hola">NARUTO</string>
+    <color name="colorVariable">#FFEB3B</color>
+</resources>
