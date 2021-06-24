@@ -12,19 +12,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //llamada al boton
+        val botonListView = findViewById<Button>(
+            R.id.btn_ir_list_view
+        )
+        botonListView.setOnClickListener {
+            abrirActividad(ActListView::class.java)
+        }
+
         val botonCicloVida = findViewById<Button>(
             R.id.btn_ciclo_vida
         )
         botonCicloVida.setOnClickListener {
-            abrirCicloVida()
+            abrirActividad(ActListView::class.java)
         }
     }
     //funcion para abrir el ciclo de vida
-    fun abrirCicloVida(){
+    fun abrirActividad(
+        clase:Class<*>
+    ){
         val intentImplicito = Intent(
             this,
-            MainActivityClase10::class.java
-        )
+            clase
+                    )
         this.startActivity(intentImplicito)
     }
+
 }
