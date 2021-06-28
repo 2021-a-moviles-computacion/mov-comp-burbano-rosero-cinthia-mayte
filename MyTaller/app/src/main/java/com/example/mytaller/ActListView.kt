@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextMenu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -11,12 +12,13 @@ import android.widget.Button
 import android.widget.ListView
 
 class ActListView : AppCompatActivity() {
+    var posicionItemSeleccionado = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_act_list_view)
 
         //Arreglo  de numeros
-        val arregloNumeros = arrayListOf<Int>(1, 2, 3, 4, 5)
+        val arregloNumeros = BBaseDatosMemoria.arregloBEentrenador
         //Crear adaptador
         val adaptador = ArrayAdapter(
             this, android.R.layout.simple_list_item_1, arregloNumeros //layout visual
@@ -28,12 +30,13 @@ class ActListView : AppCompatActivity() {
         val botonAnadirNumero = findViewById<Button>(R.id.btn_anadir_numero)
         botonAnadirNumero.setOnClickListener {
             anadirItemALisView(
-                1,
+                BEentrenador("PRUEBA", "dd@d.com"),
                 arregloNumeros,
                 adaptador
-              //  adaptador
-            )}
-   /*     listViewEjemplo.setOnItemLongClickListener { adapterView, view, posicion, id ->
+                //  adaptador
+            )
+        }
+        /*     listViewEjemplo.setOnItemLongClickListener { adapterView, view, posicion, id ->
             Log.i("list-view","Dio clic ${posicion}")
             return@setOnItemLongClickListener true
         }*/
@@ -48,16 +51,44 @@ class ActListView : AppCompatActivity() {
     ) {
         super.onCreateContextMenu(menu, v, menuInfo)
         val inflater = menuInflater
-        inflater.inflate(R.menu.menu,menu)
-       // val info = menuInfo as AdapterView.AdapterContextMenuInfo
-        //val id = info.position
-        //posicionItemSeleccionado =id
+        inflater.inflate(R.menu.menu, menu)
+        val info = menuInfo as AdapterView.AdapterContextMenuInfo
+        val id = info.position
+        posicionItemSeleccionado = id
+        Log.i("List-view", "List-view $posicionItemSeleccionado")
+        Log.i("List-view", "Entrenador ${BBaseDatosMemoria.arregloBEentrenador}")
+
     }
 
-        fun anadirItemALisView( valor:Int,
-                                arreglo: ArrayList<Int>,
-                                adaptador:ArrayAdapter<Int>){
-            arreglo.add(valor)
-            adaptador.notifyDataSetChanged() //actualiza la informacion
+    fun anadirItemALisView(
+        valor: BEentrenador,
+        arreglo: ArrayList<BEentrenador>,
+        adaptador: ArrayAdapter<BEentrenador>
+    ) {
+        arreglo.add(valor)
+        adaptador.notifyDataSetChanged() //actualiza la informacion
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+            return when (item?.itemId) {
+                //editar
+                R.id.mi_editar -> {
+                    Log.i(
+                        "List-view",
+                        "editar ${BBaseDatosMemoria.arregloBEentrenador[posicionItemSeleccionado]}"
+                    )
+                    return true
+                }
+                //eliminar
+                R.id.mi_eliminar -> {
+                    Log.i(
+                        "List-view",
+                        "Eliminar ${BBaseDatosMemoria.arregloBEentrenador[posicionItemSeleccionado]}"
+                    )
+                    return true
+                }
+                else -> super.onContextItemSelected(item)
+            }
         }
     }
+
