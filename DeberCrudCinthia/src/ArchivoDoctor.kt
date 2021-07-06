@@ -63,26 +63,5 @@ class ArchivoDoctor {
         }
         return arrayPaciente
     }
-    fun actualizar(Paciente: ArrayList<_Doctor>) {
-        var salida: PrintWriter? = null
-        try {
-            // escritura de datos
-            salida = PrintWriter(BufferedWriter(FileWriter("Doctor.txt")))
 
-            for (i in Paciente.indices) {
-                salida.write(
-                    "ID PACIENTE: "+Paciente[i]+ " "
-                        .toString() + "NOMBRE: " + Paciente[i].nombreDoc+ " " + "FECHA DE NACIMIENTO: " + Paciente[i].fechaNac+ " " +
-                            "DISCAPACIDAD: " + Paciente[i].discapacidad+ " "+"TALLA: " + Paciente[i].talla + " "+
-                            "PESO: " + Paciente[i].peso+ "\n"
-                )
-            }
-            salida.close()
-        } catch (ex: IOException) {
-            JOptionPane.showMessageDialog(null, "Datos no Compatibles")
-        } finally {
-            salida!!.close()
-        }
-
-    }
 }

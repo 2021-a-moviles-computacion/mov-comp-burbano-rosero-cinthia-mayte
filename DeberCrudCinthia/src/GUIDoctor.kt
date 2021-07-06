@@ -5,10 +5,10 @@ import javax.swing.*
 
 
 class GUIDoctor (titulo:String): JFrame(titulo){
-        var Productos: ArrayList<_Doctor> = ArrayList<_Doctor>()
+        var _Doctor_: ArrayList<_Doctor> = ArrayList<_Doctor>()
         var objArchivo = ArchivoDoctor()
     init{
-            val tam = Dimension(700,550)
+            val tam = Dimension(700,650)
             this.size =tam
             defaultCloseOperation= WindowConstants.EXIT_ON_CLOSE
             this.setLocation(300,100)
@@ -83,21 +83,31 @@ class GUIDoctor (titulo:String): JFrame(titulo){
             var btnCrear = JButton("CREAR")
             var btnEliminar = JButton("ELIMINAR")
             var btnActualizar = JButton("ACTUALIZAR")
+            var btnSiguiente = JButton("SIGUIENTE")
             panel1.add(btnLeer)
             panel1.add(btnCrear)
             panel1.add(btnEliminar)
             panel1.add(btnActualizar)
+            panel1.add(btnSiguiente)
             btnLeer.setBounds(450,20,160,40)
             btnCrear.setBounds(450,70,160,40)
             btnEliminar.setBounds(450,120,160,40)
             btnActualizar.setBounds(450,170,160,40)
+            btnSiguiente.setBounds(450,220,160,40)
+
             //textArea para mostrar informaciòn
             var txaMostrar = JTextArea()
             var scrol= JScrollPane(txaMostrar)
             //txaMostrar.append("ID       NOMBRE      FECHA NACIMIENTO        DISCAPACIDAD        TALLA        PESO")
             panel3.add(scrol)
             scrol.setBounds(20,20,590,200)
-
+            //llamamos al Frame paciente
+            var eventoSiguiente = ActionListener {
+                    var ventPaci  = GUIPaciente("PACIENTE")
+                    ventPaci.isVisible=true
+            }
+            btnSiguiente.addActionListener(eventoSiguiente)
+            //Crear
             var eventoCrearNuevoDoctor =ActionListener{
                 var _idDoctor:Int =txtidDoctor.getText().toInt()
                // var _txtidPaciente: Int =txtidPaciente.getText().toInt()
@@ -108,38 +118,76 @@ class GUIDoctor (titulo:String): JFrame(titulo){
                 var _txttalla=txttalla.getText().toFloat()
                 var _txtPeso=txtPeso.getText().toFloat()
                 var objDoctor = _Doctor(_idDoctor,_txtNombre,_txtFechaNac,_txtDiscapacidad,_txtespecialidad,_txttalla,_txtPeso)
-                    Productos.add(objDoctor)
+                    _Doctor_.add(objDoctor)
                     println(objDoctor)
                 JOptionPane.showMessageDialog(null, "El Doctor ha sido guardado");
-                    objArchivo.escribir(Productos)
+                    objArchivo.escribir(_Doctor_)
             }
             btnCrear.addActionListener(eventoCrearNuevoDoctor)
-
+            //Leer
             var eventoReadDoctor = ActionListener {
 
                     var msj = ""
-                    for (i in Productos.indices) {
-                            val per: String = Productos[i].toString()
+                    for (i in _Doctor_.indices) {
+                            val per: String = _Doctor_[i].toString()
                             msj += per + "\n"
                     }
                     txaMostrar.setText(msj)
             }
             btnLeer.addActionListener(eventoReadDoctor)
-
+            //eliminar
             var eventoDeleteDoctor = ActionListener {
                     val PacienteEliminar: Int = txtidDoctor.getText().toInt()
-                    for (i in Productos.indices) {
-                            if (PacienteEliminar == Productos[i].idDoctor) {
-                                    Productos.removeAt(i)
-                                    objArchivo.escribir(Productos)
+                    for (i in _Doctor_.indices) {
+                            if (PacienteEliminar == _Doctor_[i].idDoctor) {
+                                    _Doctor_.removeAt(i)
+                                    objArchivo.escribir(_Doctor_)
                                     JOptionPane.showMessageDialog(null, "El Doctor ha sido eliminado")
                             }
                     }
             }
             btnEliminar.addActionListener(eventoDeleteDoctor)
+            //Actualizar
+            var eventoActualizarDoctor = ActionListener {
+                    val idActualizar: Int = txtidDoctor.getText().toInt()
+                    val nombreActualizar: String = txtNombre.getText()
+                    val fechaActualizar: String = txtFechaNac.getText()
+                    val disceActualizar: Boolean = txtDiscapacidad.getText().toBoolean()
+                    val especActualizar: String = txtespecialidad.getText()
+                    val tallaActualizar: Float = txttalla.getText().toFloat()
+                    val pesoActualizar: Float = txtPeso.getText().toFloat()
+                    for (i in _Doctor_.indices) {
+                            if (idActualizar == _Doctor_[i].idDoctor) {
+                                    if(nombreActualizar!=_Doctor_[i].nombreDoc){
+                                            _Doctor_[i].nombreDoc= txtNombre.getText()
+                                            objArchivo.escribir(_Doctor_)
+                                    }
+                                    if(fechaActualizar!=_Doctor_[i].fechaNac){
+                                            _Doctor_[i].fechaNac= txtFechaNac.getText()
+                                            objArchivo.escribir(_Doctor_)
+                                    }
+                                    if(disceActualizar!=_Doctor_[i].discapacidad){
+                                            _Doctor_[i].discapacidad= txtDiscapacidad.getText().toBoolean()
+                                            objArchivo.escribir(_Doctor_)
+                                    }
+                                    if(especActualizar!=_Doctor_[i].especialidad){
+                                            _Doctor_[i].especialidad= txtespecialidad.getText()
+                                            objArchivo.escribir(_Doctor_)
+                                    }
+                                    if(tallaActualizar!=_Doctor_[i].talla){
+                                            _Doctor_[i].talla= txttalla.getText().toFloat()
+                                            objArchivo.escribir(_Doctor_)
+                                    }
+                                    if(pesoActualizar!=_Doctor_[i].peso){
+                                            _Doctor_[i].peso= txtPeso.getText().toFloat()
+                                            objArchivo.escribir(_Doctor_)
+                                    }
+                            }
+                    }
+                    JOptionPane.showMessageDialog(null, "Actualizado")
+            }
+            btnActualizar.addActionListener(eventoActualizarDoctor)
         }
-
-
     }
 
 
