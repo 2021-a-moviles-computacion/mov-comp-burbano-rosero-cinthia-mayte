@@ -9,7 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActListView"></activity>
+        <activity android:name=".ActiAgregarUsuario"></activity>
+        <activity android:name=".ActivityBaseDeDatos" />
+        <activity android:name=".ActividaAptualizar" />
+        <activity android:name=".CreaeUsuario" />
+        <activity android:name=".CIntentExplicitoParametros" />
+        <activity android:name=".ActListView">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivityClase10" />
         <activity android:name=".MainActivity">
             <intent-filter>

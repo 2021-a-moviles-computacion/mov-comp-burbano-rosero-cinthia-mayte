@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ActivityBaseDeDatos">
 
     <TextView
         android:id="@+id/textView"
@@ -84,7 +84,7 @@
         app:layout_constraintTop_toTopOf="@+id/btn_eliminarUsuario" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_anadirUsuario"
+        android:id="@+id/btn_añadirUsuario"
         android:layout_width="73dp"
         android:layout_height="65dp"
         android:backgroundTint="#FD3A6CEA"
@@ -113,5 +113,65 @@
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edti_id" />
+
+
+    /* <Button
+    android:id="@+id/btn_ciclo_vida"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="56dp"
+    android:layout_marginEnd="4dp"
+    android:background="#60A5DC"
+    android:text="CICLO DE VIDA"
+    android:textColor="#FFFFFF"
+    app:layout_constraintEnd_toEndOf="@+id/btn_ir_intent_implicito"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="@+id/btn_ir_intent_implicito"
+    app:layout_constraintTop_toBottomOf="@+id/btn_ir_intent_implicito" />
+
+    <Button
+        android:id="@+id/btn_ir_list_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:backgroundTint="#977ACA"
+        android:text="LIST VIEW"
+        app:layout_constraintEnd_toEndOf="@+id/btn_base_datos"
+        app:layout_constraintHorizontal_bias="0.594"
+        app:layout_constraintStart_toStartOf="@+id/btn_base_datos"
+        app:layout_constraintTop_toBottomOf="@+id/btn_base_datos" />
+
+    <Button
+        android:id="@+id/btn_ir_intent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="INTENT"
+        app:layout_constraintEnd_toEndOf="@+id/btn_ir_list_view"
+        app:layout_constraintStart_toStartOf="@+id/btn_ir_list_view"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ir_list_view" />
+
+    <Button
+        android:id="@+id/btn_ir_intent_implicito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="IMPLICITO"
+        app:layout_constraintEnd_toEndOf="@+id/btn_ir_intent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_ir_intent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ir_intent" />
+
+    <Button
+        android:id="@+id/btn_base_datos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="#647BF8"
+        android:text="BASE DE DATOS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">MyTaller</string>
+    <string name="app_name" translatable="false">MyTaller</string>
     <string name="Hola">HOLA MUNDO! :D</string>
+    <string-array name="string_array_opciones_dialogo">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 
 </resources>
