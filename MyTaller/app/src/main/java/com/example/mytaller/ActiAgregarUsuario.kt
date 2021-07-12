@@ -12,7 +12,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_acti_agregar_usuario.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class ActiAgregarUsuario : AppCompatActivity() {
+class ActiAgregarUsuario : AppCompatActivity() { 
     val datos = ESqliteHelperUsuari(this)
 
 
