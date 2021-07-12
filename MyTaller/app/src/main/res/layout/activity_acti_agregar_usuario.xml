@@ -100,16 +100,4 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/editTextTexid"
-        android:layout_width="84dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="ID"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toEndOf="@+id/editTextnonbre_agregar"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 </androidx.constraintlayout.widget.ConstraintLayout>
