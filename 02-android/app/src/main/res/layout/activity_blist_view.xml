@@ -7,22 +7,22 @@
     tools:context=".BListView">
 
     <ListView
-        android:id="@+id/ltvEjemplo"
-        android:layout_width="177dp"
-        android:layout_height="379dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/ltv_ejemplo"
+        android:layout_width="259dp"
+        android:layout_height="203dp"
+        android:layout_marginTop="88dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.295" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnAnadirNumero"
+        android:id="@+id/btn_añadir_numero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:text="AÑADIR NÚMERO"
-        app:layout_constraintEnd_toEndOf="@+id/ltvEjemplo"
-        app:layout_constraintStart_toStartOf="@+id/ltvEjemplo"
-        app:layout_constraintTop_toBottomOf="@+id/ltvEjemplo" />
+        android:layout_marginTop="116dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="@+id/ltv_ejemplo"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/ltv_ejemplo"
+        app:layout_constraintTop_toBottomOf="@+id/ltv_ejemplo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
