@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyExamen">
-        <activity android:name=".registrarDoctor"></activity>
+        <activity android:name=".ActualizarDoctor"></activity>
+        <activity android:name=".registrarDoctor" />
+        <activity android:name=".MostrarDoctor" />
+        <activity
+            android:name=".mostrarPaciente"
+            android:label="@string/title_activity_mostrar_paciente"
+            android:theme="@style/Theme.MyExamen.NoActionBar" />
+        <activity android:name=".ActualizarPaciente" />
+        <activity android:name=".registrarPaciente" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

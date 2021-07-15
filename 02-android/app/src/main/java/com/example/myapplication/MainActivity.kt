@@ -9,6 +9,7 @@ import android.provider.ContactsContract
 import android.util.Log
 import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.myapplication.GRecyclerView as GRecyclerView1
 
 class MainActivity : AppCompatActivity() {
     val CODIGO_RESPUESTA_INTENT_EXPLICITO = 401
@@ -46,7 +47,10 @@ class MainActivity : AppCompatActivity() {
                 abrirActividad(InterfazUsuario::class.java)
             }
 
-
+    val botonAbrirReciclerView= findViewById<Button>(R.id.btn_ir_recycler_view)
+        botonAbrirReciclerView.setOnClickListener {
+            abrirActividadConParametros(GRecyclerView1::class.java)
+        }
     }
 
 
