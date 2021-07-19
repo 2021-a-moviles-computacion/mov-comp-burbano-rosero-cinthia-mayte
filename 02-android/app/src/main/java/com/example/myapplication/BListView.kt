@@ -31,8 +31,6 @@ class BListView : AppCompatActivity() {
 
 
 
-
-
         val botonAñadirItem = findViewById<Button>(R.id.btn_añadir_numero)
         //botonAñadirItem.setOnClickListener{añadirItemsAlListView(BEntrenador("Prueba","d@d.com"),arregloNumeros, adaptador)}
 

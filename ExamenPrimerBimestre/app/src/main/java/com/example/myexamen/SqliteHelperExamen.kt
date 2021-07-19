@@ -53,7 +53,7 @@ class SqliteHelperExamen (contexto: Context?): SQLiteOpenHelper(
         valoresAGuardar.put("telefono",telefono)
         valoresAGuardar.put("correo",correo)
         valoresAGuardar.put("especialidad",especialidad)
-        val resultadoEscrituraDoctor:Long= conexionEscrituraDoctor.insert("DOCTOR",null,valoresAGuardar)
+        val resultadoEscrituraDoctor:Long = conexionEscrituraDoctor.insert("DOCTOR",null,valoresAGuardar)
         conexionEscrituraDoctor.close()
         return if(resultadoEscrituraDoctor.toInt()==-1)false else true
     }
@@ -90,13 +90,14 @@ class SqliteHelperExamen (contexto: Context?): SQLiteOpenHelper(
         return if (resultadoEliminarPaciente.toInt()==-1) false else true
     }
     //funcion actualizar Doctor
-    fun actualizarDoctor(nombre:String,edad:Int,telefono: String,correo: String,idActualizar:Int):Boolean{
+    fun actualizarDoctor(nombre:String,edad:Int,telefono: String,correo: String,especialidad: String,idActualizar:Int):Boolean{
         val conexionEscritura=writableDatabase
         val valorAActualizarDoctor=ContentValues()
         valorAActualizarDoctor.put("nombre",nombre)
         valorAActualizarDoctor.put("edad",edad)
         valorAActualizarDoctor.put("telefono",telefono)
         valorAActualizarDoctor.put("correo",correo)
+        valorAActualizarDoctor.put("especialidad",especialidad)
         val resultadoActualizarDoctor= conexionEscritura.update(
             "DOCTOR",valorAActualizarDoctor,"idDoctor=?",
             arrayOf(idActualizar.toString())
@@ -121,7 +122,34 @@ class SqliteHelperExamen (contexto: Context?): SQLiteOpenHelper(
         conexionEscritura.close()
         return if(resultadoActualizarPaciente.toInt()==-1)false else true
     }
+    //funcion mostrar doctor
+    fun mostrarDoctor(): ArrayList<doctorBDD>{
 
+        val consultaDoctor = "SELECT * FROM DOCTOR"
+        val baseDatosLectura = readableDatabase
+        val resultaConsultaLectura = baseDatosLectura.rawQuery(consultaDoctor, null)
+        val existeDoctor = resultaConsultaLectura.moveToFirst()
+        var arregloDoctor = arrayListOf<doctorBDD>()
+
+        if(existeDoctor){
+            do{
+                val id = resultaConsultaLectura.getInt(0)
+                if(id !=null){
+                    arregloDoctor.add(doctorBDD(id,resultaConsultaLectura.getString(1),
+                    resultaConsultaLectura.getString(2),
+                    resultaConsultaLectura.getInt(3),
+                    resultaConsultaLectura.getString(4),
+                    resultaConsultaLectura.getString(5),
+                    resultaConsultaLectura.getString(6),))
+                }
+
+            }while(resultaConsultaLectura.moveToNext())
+            Log.i("bdd", "Se devolvieron todos los doctores")
+        }
+        resultaConsultaLectura.close()
+        baseDatosLectura.close()
+        return arregloDoctor
+    }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
