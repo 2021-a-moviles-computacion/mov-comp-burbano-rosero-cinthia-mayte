@@ -43,13 +43,12 @@ class registrarPaciente : AppCompatActivity() {
             val editEdadPac= edit_edadPaciente.text.toString().toInt()
             val editTelefonodPac= edit_telf_paciente.text.toString()
             val editCorreoPac= edit_correoPaciente.text.toString()
-            val lista = datos.agregarPaciente(editIdDoctor,editCedulaPac,editNombrePac,editEdadPac,editTelefonodPac,editCorreoPac)
+            val lista = datos.agregarPaciente(editCorreoPac,editTelefonodPac,editEdadPac,editCedulaPac,editIdDoctor,editNombrePac)
             if(lista!=null){
                 Toast.makeText(this,"Paciente guardado correctamente", Toast.LENGTH_SHORT).show()
                 Log.i("añadirPaciente","$editIdDoctor,${editCedulaPac} ---> ${editNombrePac}, $editEdadPac,$editTelefonodPac,$editCorreoPac")
             }else{
                 Toast.makeText(this,"Paciente no Ingresado", Toast.LENGTH_SHORT).show()
-
             }
         }
 
