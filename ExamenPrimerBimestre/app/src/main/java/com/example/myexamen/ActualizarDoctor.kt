@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_actualizar_paciente.*
 
 class ActualizarDoctor : AppCompatActivity() {
     val datos =SqliteHelperExamen(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actualizar_doctor)

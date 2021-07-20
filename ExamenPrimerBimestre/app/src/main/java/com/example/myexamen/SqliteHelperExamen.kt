@@ -24,7 +24,7 @@ class SqliteHelperExamen (contexto: Context?): SQLiteOpenHelper(
             telefono VARCHAR(10),
             correo VARCHAR(50),
             especialidad VARCHAR(50)
-            )
+            );
         """.trimIndent()
         Log.i("bdd", "Creacion tabla doctor")
         db?.execSQL(scripCrearTablaDoctor)
@@ -36,8 +36,9 @@ class SqliteHelperExamen (contexto: Context?): SQLiteOpenHelper(
             nombrePaciente VARCHAR(50),
             edadPaciente INTEGER,
             telefonoPaciente VARCHAR(10),
-            correoPaciente VARCHAR(50)
-            )
+            correoPaciente VARCHAR(50),
+            FOREIGN KEY(idDoctor) REFERENCES DOCTOR(idDoctor)
+            );
         """.trimIndent()
         Log.i("bdd", "Creacion tabla paciente")
         db?.execSQL(scripCrearTablaPaciente)

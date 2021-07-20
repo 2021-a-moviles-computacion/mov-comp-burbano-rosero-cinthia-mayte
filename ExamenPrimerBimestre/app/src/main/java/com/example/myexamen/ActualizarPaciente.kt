@@ -14,6 +14,7 @@ class ActualizarPaciente : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actualizar_paciente)
+
         BasesDeDatos.TablaPaciente= SqliteHelperExamen(this)
         btn_Actguardar_paciente.setOnClickListener {
             if (BasesDeDatos.TablaPaciente!=null){
@@ -28,12 +29,20 @@ class ActualizarPaciente : AppCompatActivity() {
 
     }
     fun ActualizarPac(){
+        val doctorAct=intent.getParcelableExtra<doctorBDD>("Doctor")
+        val idDoctor:Int = doctorAct!!.idDoctor
         val idDoctorActualizar= edit_Act_id_doctor.text.toString().toInt()
         val nombreActualizar= edit_ActnombrePaciente.text.toString()
         val edadActualizar = edit_ActedadPaciente.text.toString().toInt()
         val telefonoActualizar= edit_Acttelf_paciente.text.toString()
         val correoActualizar= edit_ActcorreoPaciente.text.toString()
         val idActualizar = edit_id_pacienteAct.text.toString().toInt()
+        edit_Act_id_doctor.setText(doctorAct?.idDoctor)
+        edit_ActnombrePaciente.setText(doctorAct?.nombre)
+        edit_ActedadPaciente.setText(doctorAct?.edadDoc)
+        edit_Acttelf_paciente.setText(doctorAct?.telefonoDoc)
+        edit_ActcorreoPaciente.setText(doctorAct?.correoDoc)
+        edit_id_pacienteAct.setText(idActualizar)
 
         if (edit_Act_id_doctor.text.isNotBlank()&&edit_ActnombrePaciente.text.isNotBlank()
             &&edit_ActedadPaciente.text.isNotBlank()&&edit_Acttelf_paciente.text.isNotBlank()
