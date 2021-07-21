@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity() {
 
         val botoAbrirIntentExplicito = findViewById<Button>(R.id.btn_ir_intent_implicit)
 
+        val botonAbrirHTTP= findViewById<Button>(R.id.btn_ir_http)
+        botonAbrirHTTP.setOnClickListener {
+            abrirActividadConParametros(actividadHTTP::class.java)
+        }
         botoAbrirIntentExplicito
             .setOnClickListener{
                 val intentConRespuesta = Intent(

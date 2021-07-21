@@ -20,7 +20,7 @@ class ActiAgregarUsuario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_acti_agregar_usuario)
         EBaseDeDatos.TablaUsuario= ESqliteHelperUsuari(this)
-    EBaseDeDatos.TablaUsuario= ESqliteHelperUsuari(this)
+        EBaseDeDatos.TablaUsuario= ESqliteHelperUsuari(this)
         btn_nuevo_usuario.setOnClickListener {
             //val txtNombreAAgregar = editTextnonbre_agregar.getText().toString()
             //val txtdescAAgregar= editTextDescri_agregar.getText().toString()
@@ -29,8 +29,6 @@ class ActiAgregarUsuario : AppCompatActivity() {
                 //EBaseDeDatos.TablaUsuario!!.crearUsuarioFormulario(txtNombreAAgregar,txtdescAAgregar)
                    editTextnonbre_agregar.setText("")
                    editTextDescri_agregar.setText("")
-
-
             }
 
         }
