@@ -181,7 +181,35 @@ class SqliteHelperExamen (contexto: Context?): SQLiteOpenHelper(
         baseDatosLectura.close()
         return arregloPaciente
     }
+    //Funcion para buscar paciente por doctor
+    fun consultarPacientePorDoctor(idDoc:Int):ArrayList<PacienteBDD>{
+        val scripConsulta ="SELECT * FROM PACIENTE WHERE idDoctor = ${idDoc}"
+        val baseDatosLectura = readableDatabase
+        val resultaConsultaLectura = baseDatosLectura.rawQuery(scripConsulta, null)
+        val existePaciente = resultaConsultaLectura.moveToFirst()
+        var arregloPaciente = arrayListOf<PacienteBDD>()
 
+        if(existePaciente){
+            do{
+                val id = resultaConsultaLectura.getInt(0)
+                if(id !=null){
+                    arregloPaciente.add(
+                        PacienteBDD(id,idDoc,
+                            resultaConsultaLectura.getString(2),
+                            resultaConsultaLectura.getString(3),
+                            resultaConsultaLectura.getInt(4),
+                            resultaConsultaLectura.getString(5),
+                            resultaConsultaLectura.getString(6),)
+                    )
+                }
+
+            }while(resultaConsultaLectura.moveToNext())
+            Log.i("bdd", "Se devolvieron todos los Pacientes")
+        }
+        resultaConsultaLectura.close()
+        baseDatosLectura.close()
+        return arregloPaciente
+    }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 

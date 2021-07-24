@@ -96,4 +96,5 @@ class ESqliteHelperUsuari(contexto: Context?):SQLiteOpenHelper(contexto,"moviles
     }
 
 
+
 }
