@@ -36,6 +36,8 @@ class mostrarPaciente : AppCompatActivity() {
             registerForContextMenu(listViewMostrarPaciente)
 
         }
+
+
     }
     override fun onCreateContextMenu(
         menu: ContextMenu?,
@@ -90,8 +92,10 @@ class mostrarPaciente : AppCompatActivity() {
             }
 
 
+
             else -> super.onContextItemSelected(item)
         }
+
     }
 
     private fun abrirActividadConParametros(clase: Class<*>, paciente: PacienteBDD, ) {

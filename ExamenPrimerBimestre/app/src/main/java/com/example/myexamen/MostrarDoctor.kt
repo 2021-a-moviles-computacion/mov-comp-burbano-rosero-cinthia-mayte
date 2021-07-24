@@ -95,7 +95,14 @@ class MostrarDoctor : AppCompatActivity() {
 
                 return true
             }
+            //MOSTRAR PACIENTE
+            R.id.id_itemverPaciente-> {
 
+
+                val inten:Intent =Intent(this, mostrarPaciente::class.java)
+                startActivity(inten)
+                return true
+            }
 
             else -> super.onContextItemSelected(item)
         }
