@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyExamen">
-        <activity android:name=".ActualizarDoctor"></activity>
+        <activity android:name=".mostrarPacientePorDoctor"></activity>
+        <activity android:name=".ActualizarDoctor" />
         <activity android:name=".registrarDoctor" />
         <activity android:name=".MostrarDoctor" />
         <activity

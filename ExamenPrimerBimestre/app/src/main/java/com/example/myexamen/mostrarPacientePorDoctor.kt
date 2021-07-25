@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
@@ -11,34 +12,35 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
-import kotlinx.android.synthetic.main.activity_mostrar_paciente.*
 
-class mostrarPaciente : AppCompatActivity() {
-    companion object{
-        var idPaciente=0
-    }
-    var PosisionItemPaciente =0
-    var adaptadorPaciente: ArrayAdapter<PacienteBDD>?=null
-    val CODIGO_RESPUESTA_INTENT_EXPLICITO = 401
+class mostrarPacientePorDoctor : AppCompatActivity() {
+    var adapterPac: ArrayAdapter<PacienteBDD>? = null
+    var CODIGO_RESPUESTA_INTENT_EXPLICITO = 402
+    var CODIGO_RESPUESTA_INTENT_EXPLICITO3 = 405
+    var posicionItem = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mostrar_paciente)
-        btn_agregar_paciente.setOnClickListener {
-            val inten:Intent =Intent(this, registrarPaciente::class.java)
-            startActivity(inten)
-        }
-        if(BasesDeDatos.TablaPaciente != null) {
-            val Paciente = BasesDeDatos.TablaPaciente !!.mostrarPaciente()
-            adaptadorPaciente= ArrayAdapter(this, android.R.layout.simple_list_item_1,Paciente)
-            val listViewMostrarPaciente = findViewById<ListView>(R.id.id_lista_paciente)
-            listViewMostrarPaciente.adapter = adaptadorPaciente
-            registerForContextMenu(listViewMostrarPaciente)
+        setContentView(R.layout.activity_mostrar_paciente_por_doctor)
+        val Doctor= intent.getParcelableExtra<PacienteBDD>("Paciente")
+        val id = MostrarDoctor.idDodtor
 
+
+        BasesDeDatos.TablaPaciente= SqliteHelperExamen(this)
+
+        if(BasesDeDatos.TablaPaciente!= null) {
+            val Paciente = BasesDeDatos.TablaPaciente !!.consultarPacientePorDoctor(id)
+            adapterPac= ArrayAdapter(this, android.R.layout.simple_list_item_1,Paciente)
+            val listViewMostrarPaciente = findViewById<ListView>(R.id.lv_pacientes)
+            listViewMostrarPaciente.adapter = adapterPac
+            registerForContextMenu(listViewMostrarPaciente)
         }
 
 
     }
+
+
+
     override fun onCreateContextMenu(
         menu: ContextMenu?,
         v: View?,
@@ -51,12 +53,12 @@ class mostrarPaciente : AppCompatActivity() {
 
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val id = info.position
-        PosisionItemPaciente = id
-        idPaciente = adaptadorPaciente!!.getItem(PosisionItemPaciente)!!.idPaciente
+        posicionItem = id
+        mostrarPaciente.idPaciente = adapterPac!!.getItem(posicionItem)!!.idPaciente
     }
     override fun onContextItemSelected(item: MenuItem): Boolean {
 
-        var adaptPaciente = adaptadorPaciente!!.getItem(PosisionItemPaciente)
+        var adaptPaciente = adapterPac!!.getItem(posicionItem)
 
         return when(item?.itemId){
 
@@ -70,7 +72,7 @@ class mostrarPaciente : AppCompatActivity() {
                         setMessage("¿Desea eliminar Paciente?")
                         setPositiveButton("Si"){ _: DialogInterface, _: Int ->
                             BasesDeDatos.TablaPaciente!!.eliminarPaciente(adaptPaciente!!.idPaciente) //con esta linea elimino el paciente seleccionado
-                            adaptadorPaciente?.remove(adaptadorPaciente!!.getItem(PosisionItemPaciente));
+                            adapterPac?.remove(adapterPac!!.getItem(posicionItem));
 
                         }
                         setNegativeButton("No", null)
@@ -99,7 +101,7 @@ class mostrarPaciente : AppCompatActivity() {
     }
 
     private fun abrirActividadConParametros(clase: Class<*>, paciente: PacienteBDD, ) {
-        val intenExplicito =Intent(this, clase)
+        val intenExplicito = Intent(this, clase)
         intenExplicito.putExtra("paciente",paciente)
         startActivityForResult(intenExplicito,CODIGO_RESPUESTA_INTENT_EXPLICITO)
 
