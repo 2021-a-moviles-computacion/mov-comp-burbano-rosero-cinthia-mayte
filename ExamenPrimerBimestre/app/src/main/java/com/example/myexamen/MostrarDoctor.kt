@@ -99,10 +99,16 @@ class MostrarDoctor : AppCompatActivity() {
             R.id.id_itemverPaciente-> {
 
 
-                val inten:Intent =Intent(this, mostrarPaciente::class.java)
-                startActivity(inten)
-                return true
-            }
+
+                if (aDoctor != null) {
+                    abrirActividadConParametros(mostrarPacientePorDoctor::class.java,aDoctor)
+                }
+
+
+
+                return true }
+
+
 
             else -> super.onContextItemSelected(item)
         }
