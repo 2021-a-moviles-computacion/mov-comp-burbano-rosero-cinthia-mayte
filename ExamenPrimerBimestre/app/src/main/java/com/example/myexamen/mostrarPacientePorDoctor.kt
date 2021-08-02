@@ -16,7 +16,6 @@ import androidx.appcompat.app.AlertDialog
 class mostrarPacientePorDoctor : AppCompatActivity() {
     var adapterPac: ArrayAdapter<PacienteBDD>? = null
     var CODIGO_RESPUESTA_INTENT_EXPLICITO = 402
-    var CODIGO_RESPUESTA_INTENT_EXPLICITO3 = 405
     var posicionItem = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
