@@ -23,7 +23,7 @@ class MostrarDoctor : AppCompatActivity() {
     var PosisionItem =0
     var adaptador: ArrayAdapter<doctorBDD>?=null
     val CODIGO_RESPUESTA_INTENT_EXPLICITO = 401
-    val datos = SqliteHelperExamen(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mostrar_doctor)
