@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item android:id="@+id/id_explorar"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Explorar" />
+
+    </group>
+    <group>
+        <item android:id="@+id/id_gana"
+            android:icon="@drawable/ic_gift_icon_125272"
+            android:title="Gana 100 $" />
+        <item android:id="@+id/id_buscar"
+            android:icon="@drawable/ic_baseline_search_24"
+            android:title="Buscar" />
+        <item android:id="@+id/id_notificaciones"
+            android:icon="@drawable/ic_baseline_notifications_24"
+            android:title="Notificaciones" />
+        <item android:id="@+id/id_carrito"
+            android:icon="@drawable/ic_baseline_shopping_cart_24"
+            android:title="Carrito de compras" />
+        <item android:id="@+id/id_promocion"
+            android:icon="@drawable/ic_promociones"
+            android:title="Aplicar promoción" />
+        <item android:id="@+id/id_pedidos"
+            android:icon="@drawable/ic_historila"
+            android:title="Historial de pedidos" />
+        <item android:id="@+id/id_cash"
+            android:icon="@drawable/ic_wish_casd"
+            android:title="Wish Cash:" />
+        <item android:id="@+id/id_recompensad"
+            android:icon="@drawable/ic_recompensas"
+            android:title="Recompensas:" />
+        <item android:id="@+id/id_bono"
+            android:icon="@drawable/ic_baseline_calendar_today_24"
+            android:title="Bono diario de login" />
+    </group>
+
+    <group>
+        <item android:id="@+id/id_mas_compras"
+            android:icon="@drawable/ic_bmas_compras"
+            android:title="Más compras" />
+        <item android:id="@+id/id_servivio_cliente"
+            android:icon="@drawable/ic_servicios"
+            android:title="Servicio al Cliente" />
+        <item android:id="@+id/id_preguntas"
+            android:icon="@drawable/ic_preguntas"
+            android:title="Preguntas frecuentes" />
+        <item android:id="@+id/id_configuracion"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="Configuración" />
+    </group>
+
+</menu>

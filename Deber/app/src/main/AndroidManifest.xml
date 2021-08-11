@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication_deber_02">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication_deber_02">
-        <activity android:name=".Elementos"></activity>
+        <activity android:name=".notificacionesAc"></activity>
+        <activity android:name=".explorar" />
+        <activity
+            android:name=".MenuVerticalActivity"
+            android:label="@string/title_activity_menu_vertical"
+            android:theme="@style/Theme.MyApplication_deber_02.NoActionBar" />
+        <activity android:name=".ampliarVista" />
+        <activity android:name=".Elementos" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
