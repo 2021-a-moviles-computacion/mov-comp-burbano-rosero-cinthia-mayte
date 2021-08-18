@@ -1,27 +1,14 @@
 package com.example.mytaller
 
-import android.app.Activity
-import android.app.Instrumentation
-import android.content.ContentResolver
 import android.content.Intent
-import android.content.SyncRequest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_base_de_datos.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.btn_actualizarUsuario
-import kotlinx.android.synthetic.main.activity_main.btn_anadirUsuario
-import kotlinx.android.synthetic.main.activity_main.btn_consultarUsuario
-import kotlinx.android.synthetic.main.activity_main.btn_eliminarUsuario
-import kotlinx.android.synthetic.main.activity_main.editTex_nombre
 import kotlinx.android.synthetic.main.activity_main.editTextdesc_actualizar
 import kotlinx.android.synthetic.main.activity_main.edti_id
 
@@ -73,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         Log.i("Eliminar-Usuario","${id}")
         Toast.makeText(this,"Usuario eliminado", Toast.LENGTH_SHORT).show()
     }
-    fun ActualizarUsuario(){
+    fun ActualizarUsuario(editTextdesc_actualizar: Any) {
         var nombre = editTex_nombre.text.toString()
         var descripcion = editTextdesc_actualizar.text.toString()
         var id = edti_id.text.toString().toInt()

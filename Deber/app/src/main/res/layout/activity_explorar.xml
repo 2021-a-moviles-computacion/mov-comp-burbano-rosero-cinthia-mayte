@@ -12,12 +12,12 @@
         android:orientation="vertical">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout       android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="124dp"
             android:background="@color/principal"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="MissingClass,MissingConstraints">
 
             <ImageButton
                 android:id="@+id/imageButton"
