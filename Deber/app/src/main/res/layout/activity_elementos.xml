@@ -6,13 +6,15 @@
     android:layout_height="wrap_content"
     tools:context=".Elementos"
     app:cardUseCompatPadding="true">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="254dp"
+        android:orientation="vertical"
+        >
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:padding="6dp">
@@ -92,6 +94,7 @@
                 android:layout_marginTop="7dp"
                 android:text="TextView"
                 android:textSize="16sp" />
+
 
 
         </RelativeLayout>

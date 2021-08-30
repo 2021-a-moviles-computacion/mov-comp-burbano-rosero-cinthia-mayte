@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication_deber_02">
-        <activity android:name=".notificacionesAc"></activity>
+        <activity android:name=".detalles"></activity>
+        <activity android:name=".notificacionesAc" />
         <activity android:name=".explorar" />
         <activity
             android:name=".MenuVerticalActivity"
