@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.firebase.ui.auth.AuthUI
@@ -24,6 +25,32 @@ class MainActivity : AppCompatActivity() {
         botonLogin.setOnClickListener {
             llamarLoginUsuario()
         }
+        val botonLogout = findViewById<Button>(R.id.btn_logout)
+        botonLogout.setOnClickListener {
+            solicitarSalirDeLaAplicacion()
+        }
+        val  botonProducto = findViewById<Button>(R.id.btn_producto)
+        botonProducto.setOnClickListener {
+            val intent = Intent(
+                this, CProducto::class.java
+            )
+            startActivity(intent)
+        }
+        val  botonRestaurante = findViewById<Button>(R.id.btn_restaurante)
+        botonRestaurante.setOnClickListener {
+            val intent = Intent(
+                this, DRestaurante::class.java
+            )
+            startActivity(intent)
+        }
+        val  botonOrdenes = findViewById<Button>(R.id.btn_ordenes)
+        botonOrdenes.setOnClickListener {
+            val intent = Intent(
+                this, EOrdenes::class.java
+            )
+            startActivity(intent)
+        }
+
 
     }
     fun  llamarLoginUsuario(){
@@ -80,6 +107,7 @@ class MainActivity : AppCompatActivity() {
                                     usuarioCargado.email,
                                     usuarioCargado.roles
                                 )
+                                setearBienvenida()
                             }
 
                             Log.i("firebase-firestore", "Usuario cargado")
@@ -92,10 +120,25 @@ class MainActivity : AppCompatActivity() {
 
         fun setearBienvenida(){
             val textViewBienvenida =findViewById<TextView>(R.id.tv_bienvenida)
+            val botonLogin = findViewById<Button>(R.id.buttonbtn_login)
+            val botonLogout = findViewById<Button>(R.id.btn_logout)
+            val botonProductos = findViewById<Button>(R.id.btn_producto)
+            val botonRestaurante = findViewById<Button>(R.id.btn_restaurante)
+            val botonOrdenes = findViewById<Button>(R.id.btn_ordenes)
             if(BAuthUsuario.usuario != null){
                 textViewBienvenida.text ="Bienvenido ${BAuthUsuario.usuario?.email}"
+                botonLogin.visibility = View.INVISIBLE
+                botonLogout.visibility= View.VISIBLE
+                botonProductos.visibility= View.VISIBLE
+                botonRestaurante.visibility= View.VISIBLE
+                botonOrdenes.visibility= View.VISIBLE
             }else{
                 textViewBienvenida.text= "Ingresa al aplicativo"
+                botonLogin.visibility = View.VISIBLE
+                botonLogout.visibility= View.INVISIBLE
+                botonProductos.visibility= View.INVISIBLE
+                botonRestaurante.visibility= View.INVISIBLE
+                botonOrdenes.visibility= View.INVISIBLE
             }
         }
         fun registrarUsuarioPorPrimeraVez(usuario:IdpResponse){
@@ -127,4 +170,13 @@ class MainActivity : AppCompatActivity() {
                     Log.i("firebase-login","ERROR")
                 }
             }
+        fun solicitarSalirDeLaAplicacion(){
+            AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener{
+                    BAuthUsuario.usuario= null
+                    setearBienvenida()
+                }
         }
+
+}
