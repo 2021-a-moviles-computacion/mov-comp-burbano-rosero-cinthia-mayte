@@ -1,15 +1,22 @@
 package com.example.fairebaseuno
 
+import android.app.DownloadManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class DRestaurante : AppCompatActivity() {
+    var query: Query? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drestaurante)
         val botonCrearRestaurante = findViewById<Button>(R.id.btn_crear_restaurante)
@@ -18,7 +25,8 @@ class DRestaurante : AppCompatActivity() {
         }
         val botonDatosPrueba = findViewById<Button>(R.id.btn_datos_prueba)
         botonDatosPrueba.setOnClickListener {
-            crearDatosPrueba()
+            transaccion()
+            //crearDatosPrueba()
         }
         val botonConsultar = findViewById<Button>(R.id.btn_consultar)
         botonConsultar.setOnClickListener {
@@ -79,9 +87,35 @@ class DRestaurante : AppCompatActivity() {
         )
         cities.document("BJ").set(data5)
     }
-    fun consultar(){
+   fun consultar(){
         val db =Firebase.firestore
         val citiesRef = db.collection("cities")
+
+        //Paginacion
+        var refCities = db
+            .collection("cities")
+            .orderBy("population")
+            .limit(2)
+        var tarea: Task<QuerySnapshot>? =null
+        if(query == null){
+            tarea = refCities.get()
+        }else{
+            tarea =query!!.get()
+        }
+        if(tarea != null){
+            tarea
+                .addOnSuccessListener { documentSnapshots ->
+                    guardarQuery(documentSnapshots, refCities)
+                    for(ciudad in documentSnapshots){
+                        Log.i("consultar", " ${ciudad.data}")
+                    }
+                }
+                .addOnFailureListener {
+                    Log.i("consultas", "ERROR: ${it}")
+                }
+        }
+
+
         /*FORMAS DE HACER BUSQUEDAS
         * < less than
         * <= menor o igual
@@ -93,7 +127,7 @@ class DRestaurante : AppCompatActivity() {
         * array-contains-any
         * in
         * not in*/
-        citiesRef.document("BJ")//ID
+       citiesRef.document("BJ")//ID
             .get().addOnSuccessListener {
                 Log.i("consultas","${it.data}")
             }.addOnFailureListener {  }
@@ -125,8 +159,48 @@ class DRestaurante : AppCompatActivity() {
                 for(ciudad in it){
                     Log.i("consultar","== array-constains${ciudad.data}")
                 }
+
             }
 
+        //buscar por dos o mas elementos campo '== '<='
+        //Ordenamiento
+        citiesRef
+            .whereEqualTo("capital", false)
+            . whereLessThanOrEqualTo("population", 4000000)
+            .orderBy("population", Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener {
+                for (ciudad in it){
+                    Log.i("consulta","== array-contains ${ciudad.data}")
+                }
+            }
+
+    }
+
+    fun guardarQuery(documentSnapshot: QuerySnapshot, refCities:Query){
+        if(documentSnapshot.size()>0){
+            val  ultimoDocumento= documentSnapshot.documents[documentSnapshot.size()-1]
+            query = refCities
+                .startAfter(ultimoDocumento)
+        }else{
+
+        }
+    }
+    fun transaccion(){
+
+        val db =Firebase.firestore
+        val referenciaCities = db.collection("cities").document("SF")
+        db.runTransaction {
+            transaction->
+            val documentoActual = transaction.get(referenciaCities)
+            val poblacion = documentoActual.getDouble("population")
+            if(poblacion!= null){
+                val nuevaPoblacion = poblacion+1
+                transaction.update(referenciaCities,"population", nuevaPoblacion)
+            }
+        }
+            .addOnSuccessListener { Log.i("transaccion", "Transferencia completada") }
+            .addOnFailureListener { Log.i("transaccion", "ERROR") }
     }
     fun crearRestaurante(){
         val editTextNombre= findViewById<EditText>(R.id.et_nombre_restaurante)
