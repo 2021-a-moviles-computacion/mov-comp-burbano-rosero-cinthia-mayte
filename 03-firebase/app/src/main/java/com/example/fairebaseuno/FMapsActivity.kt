@@ -29,8 +29,7 @@ class FMapsActivity : AppCompatActivity() {
 
      fun solicitarPermisos() {
          val contexto = this.applicationContext
-
-             val permisosFineLocation = ContextCompat
+         val permisosFineLocation = ContextCompat
                  .checkSelfPermission(
                      contexto,
                      android.Manifest.permission.ACCESS_FINE_LOCATION
