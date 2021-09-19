@@ -9,6 +9,9 @@
         android:id="@+id/id_item_eliminar"
         android:title="Eliminar" />
     <item
+        android:id="@+id/id_ubicacion"
+        android:title="Ver Ubicación" />
+    <item
         android:id="@+id/id_itemverPaciente"
         android:title="Ver paciente" />
 </menu>
