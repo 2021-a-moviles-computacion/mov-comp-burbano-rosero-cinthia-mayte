@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+    <TextView
+        android:id="@+id/id_tv_doctor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID DOCTOR"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+    />
+    <TextView
+        android:id="@+id/id_tv_cedula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CEDULA"
+        android:layout_marginTop="5sp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+
+        />
+    <TextView
+        android:id="@+id/id_tv_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NOMBRE"
+        android:layout_marginTop="5sp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+
+        />
+    <TextView
+        android:id="@+id/id_tv_edad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="EDAD"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="5sp"
+
+        />
+    <TextView
+        android:id="@+id/id_tv_telefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TELEFONO"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="5sp"
+        />
+    <TextView
+        android:id="@+id/id_tv_correo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CORREO"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="5sp"
+        />
+    <TextView
+        android:id="@+id/id_tv_especialidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ESPECIALIDAD"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/purple_700"
+        android:layout_marginTop="1dp"
+        />
+</androidx.appcompat.widget.LinearLayoutCompat>
