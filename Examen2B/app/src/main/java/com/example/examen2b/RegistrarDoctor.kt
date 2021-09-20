@@ -27,7 +27,7 @@ class RegistrarDoctor : AppCompatActivity() {
         inicializarFirebase()
 
         botonCancelarRDoctor.setOnClickListener {
-            val intent= Intent(this, MainActivity::class.java)
+            val intent= Intent(this, MostrarDoctor::class.java)
             startActivity(intent)
         }
         val botonGuardar= findViewById<Button>(R.id.btn_registrar_doctor)
