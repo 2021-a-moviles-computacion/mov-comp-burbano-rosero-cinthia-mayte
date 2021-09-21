@@ -1,7 +1,22 @@
 package com.example.examen2b
 
-class Doctor (var idDoctor:String? =null, var cedulaDoc:String ?= null, var nombre:String ?= null, var edadDoc:Int?= null, var telefonoDoc:String?= null
-, var correoDoc: String?= null, var especialidad:String?= null){
+import android.os.Parcel
+import android.os.Parcelable
+
+class Doctor (var idDoctor:String? ="", var cedulaDoc:String ?= "", var nombre:String ?= "", var edadDoc:Int?= 0, var telefonoDoc:String?= ""
+, var correoDoc: String?= "", var especialidad:String?= ""): Parcelable {
+
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    ) {
+    }
+
     override fun toString(): String {
         return "ID DOCTOR:  $idDoctor \n" +
                 "CEDULA:     $cedulaDoc \n" +
@@ -9,6 +24,30 @@ class Doctor (var idDoctor:String? =null, var cedulaDoc:String ?= null, var nomb
                 "TELEFONO:  $telefonoDoc \n" +
                 "CORREO:   $correoDoc \n " +
                 "ESPECIALIDAD: $especialidad"
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(idDoctor)
+        parcel.writeString(cedulaDoc)
+        parcel.writeString(nombre)
+        parcel.writeValue(edadDoc)
+        parcel.writeString(telefonoDoc)
+        parcel.writeString(correoDoc)
+        parcel.writeString(especialidad)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Doctor> {
+        override fun createFromParcel(parcel: Parcel): Doctor {
+            return Doctor(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Doctor?> {
+            return arrayOfNulls(size)
+        }
     }
 }
 

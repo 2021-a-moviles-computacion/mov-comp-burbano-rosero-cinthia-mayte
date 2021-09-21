@@ -8,103 +8,55 @@
 
     <EditText
         android:id="@+id/edit_ActnombrePaciente"
-        android:layout_width="211dp"
+        android:layout_width="299dp"
         android:layout_height="38dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="Nombre"
         android:inputType="textPersonName"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@+id/edit_Act_id_doctor"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/edit_Act_id_doctor"
-        app:layout_constraintTop_toBottomOf="@+id/edit_Act_id_doctor" />
-
-    <TextView
-        android:id="@+id/txv_ActedadPaciente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Edad:"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/txv_ActnombrePaciente"
+        app:layout_constraintEnd_toEndOf="@+id/edit_ced_act"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/txv_ActnombrePaciente"
-        app:layout_constraintTop_toBottomOf="@+id/txv_ActnombrePaciente" />
-
-    <TextView
-        android:id="@+id/txv_ActtelefonoPaciente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Telefono:"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/txv_ActedadPaciente"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="@+id/txv_ActedadPaciente"
-        app:layout_constraintTop_toBottomOf="@+id/txv_ActedadPaciente" />
-
-    <TextView
-        android:id="@+id/txv_ActnombrePaciente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Nombre:"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/txv_id_doctor_Paciente"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/txv_id_doctor_Paciente"
-        app:layout_constraintTop_toBottomOf="@+id/txv_id_doctor_Paciente" />
+        app:layout_constraintStart_toStartOf="@+id/edit_ced_act"
+        app:layout_constraintTop_toBottomOf="@+id/edit_ced_act" />
 
     <EditText
         android:id="@+id/edit_ActcorreoPaciente"
-        android:layout_width="211dp"
+        android:layout_width="299dp"
         android:layout_height="38dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="Correo"
         android:inputType="textPersonName"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/edit_Acttelf_paciente"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edit_Acttelf_paciente"
         app:layout_constraintTop_toBottomOf="@+id/edit_Acttelf_paciente" />
 
     <EditText
         android:id="@+id/edit_Acttelf_paciente"
-        android:layout_width="211dp"
+        android:layout_width="299dp"
         android:layout_height="38dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="Telefono"
         android:inputType="textPersonName"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/edit_ActedadPaciente"
         app:layout_constraintTop_toBottomOf="@+id/edit_ActedadPaciente" />
 
-    <TextView
-        android:id="@+id/txv_Actcorreo_paciente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="Correo:"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/txv_ActtelefonoPaciente"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="@+id/txv_ActtelefonoPaciente"
-        app:layout_constraintTop_toBottomOf="@+id/txv_ActtelefonoPaciente" />
-
     <EditText
         android:id="@+id/edit_ActedadPaciente"
-        android:layout_width="211dp"
+        android:layout_width="299dp"
         android:layout_height="38dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="Edad"
         android:inputType="textPersonName"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/edit_ActnombrePaciente"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edit_ActnombrePaciente"
         app:layout_constraintTop_toBottomOf="@+id/edit_ActnombrePaciente" />
 
@@ -112,11 +64,13 @@
         android:id="@+id/btn_Actguardar_paciente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="16dp"
         android:text="GUARDAR"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_act_long"
+        app:layout_constraintVertical_bias="0.481" />
 
     <Button
         android:id="@+id/btn_Actcancelar_paciente"
@@ -126,10 +80,10 @@
         android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/btn_Actguardar_paciente"
-        app:layout_constraintTop_toBottomOf="@+id/edit_ActcorreoPaciente"
-        app:layout_constraintVertical_bias="0.621" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_act_long"
+        app:layout_constraintVertical_bias="0.302" />
 
     <TextView
         android:id="@+id/textView9"
@@ -144,52 +98,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txv_id_doctor_Paciente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Id Doctor:"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/edit_id_paciente_actu"
-        app:layout_constraintHorizontal_bias="0.282"
-        app:layout_constraintStart_toStartOf="@+id/edit_id_paciente_actu"
-        app:layout_constraintTop_toBottomOf="@+id/edit_id_paciente_actu" />
-
     <EditText
         android:id="@+id/edit_Act_id_doctor"
-        android:layout_width="211dp"
+        android:layout_width="299dp"
         android:layout_height="38dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/edit_id_pacienteAct"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edit_id_pacienteAct"
-        app:layout_constraintTop_toBottomOf="@+id/edit_id_pacienteAct" />
-
-    <TextView
-        android:id="@+id/edit_id_paciente_actu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:text="ID"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="111dp"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/edit_id_pacienteAct"
-        android:layout_width="211dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="84dp"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:hint="Id Doctor"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edit_id_paciente_actu"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <EditText
+        android:id="@+id/edit_ced_act"
+        android:layout_width="299dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Cedula"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edit_Act_id_doctor"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_Act_id_doctor"
+        app:layout_constraintTop_toBottomOf="@+id/edit_Act_id_doctor" />
+
+    <EditText
+        android:id="@+id/edit_act_latitud"
+        android:layout_width="299dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Latitud"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edit_ActcorreoPaciente"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_ActcorreoPaciente"
+        app:layout_constraintTop_toBottomOf="@+id/edit_ActcorreoPaciente" />
+
+    <EditText
+        android:id="@+id/edit_act_long"
+        android:layout_width="299dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Longitud"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edit_act_latitud"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_act_latitud"
+        app:layout_constraintTop_toBottomOf="@+id/edit_act_latitud" />
 </androidx.constraintlayout.widget.ConstraintLayout>

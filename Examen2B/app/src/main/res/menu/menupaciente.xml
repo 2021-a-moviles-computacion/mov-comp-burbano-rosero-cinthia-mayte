@@ -11,7 +11,5 @@
     <item
         android:id="@+id/id_ubicacion"
         android:title="Ver Ubicación" />
-    <item
-        android:id="@+id/id_itemverPaciente"
-        android:title="Ver paciente" />
+
 </menu>
