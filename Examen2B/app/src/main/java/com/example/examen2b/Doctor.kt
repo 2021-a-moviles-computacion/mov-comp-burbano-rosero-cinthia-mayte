@@ -21,6 +21,7 @@ class Doctor (var idDoctor:String? ="", var cedulaDoc:String ?= "", var nombre:S
         return "ID DOCTOR:  $idDoctor \n" +
                 "CEDULA:     $cedulaDoc \n" +
                 "NOMBRE:  $nombre \n" +
+                "EDAD:  $edadDoc \n" +
                 "TELEFONO:  $telefonoDoc \n" +
                 "CORREO:   $correoDoc \n " +
                 "ESPECIALIDAD: $especialidad"

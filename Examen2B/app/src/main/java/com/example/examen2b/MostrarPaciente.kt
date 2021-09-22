@@ -32,10 +32,7 @@ class MostrarPaciente : AppCompatActivity() {
     lateinit var adaptador: ArrayAdapter<Paciente>
     lateinit var listViewPaciente: ListView
     private lateinit var PacienteArrayList:ArrayList<Paciente>
-    var PosisionItemPaciente =0
-    companion object{
-        var idPaciente=0
-    }
+
     var adaptadorPaciente: ArrayAdapter<*>?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +49,10 @@ class MostrarPaciente : AppCompatActivity() {
                 paciente.idPaciente = documento.id
                 paciente.nombrePaciente = documento.getString("Nombre")
                 paciente.cedulaPaciente = documento.getString("Cedula")
+                paciente.edadPaciente = documento.getLong("Edad")!!.toInt()
                 paciente.telefonoPaciente = documento.getString("Telefono")
+                paciente.longitud = documento.getDouble("Longitud")
+                paciente.latitud = documento.getDouble("Latitud")
                 paciente.correoPaciente = documento.getString("Correo")
                 paciente.idDoctor = documento.getString("IdDoctor")
                 pacientes.add(paciente)
@@ -97,7 +97,7 @@ class MostrarPaciente : AppCompatActivity() {
         nombrePacienteSeleccionado = pacienteSeleccionado.nombrePaciente.toString()
         idPacienteSeleccionado = pacienteSeleccionado.idPaciente.toString()
         idDoctorPacienteSeleccionado = pacienteSeleccionado.idDoctor.toString()
-        edadPacienteSeleccionado = pacienteSeleccionado.edadPaciente.toString().toInt()
+       // edadPacienteSeleccionado = pacienteSeleccionado.edadPaciente.toString().toInt()
         telefonoItemSSeleccionado= pacienteSeleccionado.telefonoPaciente.toString()
         correoItemSeleccionado = pacienteSeleccionado.correoPaciente.toString()
         cedulaItemSeleccionado= pacienteSeleccionado.cedulaPaciente.toString()
@@ -148,6 +148,12 @@ class MostrarPaciente : AppCompatActivity() {
                 abrirActividadporId(ActualizarPaciente::class.java, idElemento)
                 return true
             }
+            //mostrar Ubicacion
+            R.id.id_ubicacion ->{
+                abrirActiviadUbicacion(Ubicacion::class.java, idElemento)
+
+                return true
+            }
 
             else -> super.onContextItemSelected(item)
         }
@@ -164,6 +170,17 @@ class MostrarPaciente : AppCompatActivity() {
         )
         intentExplicito.putExtra("Paciente", paciente)
         startActivityForResult(intentExplicito,CODIGO_RESPUESTA_INTENT_EXPLICITO)
+    }
+    fun abrirActiviadUbicacion(
+        clase: Class<*>,
+        paciente: Paciente
+    ){
+        val intentExplicito = Intent(
+            this,
+            clase
+        )
+        intentExplicito.putExtra("Paciente", paciente)
+        startActivityForResult(intentExplicito, CODIGO_RESPUESTA_INTENT_EXPLICITO)
     }
 
 }

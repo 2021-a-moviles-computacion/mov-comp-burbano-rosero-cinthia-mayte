@@ -52,7 +52,7 @@ class MostrarDoctor : AppCompatActivity() {
                 doctor.idDoctor = documento.id
                 doctor.nombre = documento.getString("Nombre")
                 doctor.cedulaDoc = documento.getString("Cedula")
-               // doctor.edadDoc = documento.getString("Edad").toString().toInt()
+                doctor.edadDoc = documento.getLong("Edad").toString().toInt()
                 doctor.telefonoDoc = documento.getString("Telefono")
                 doctor.correoDoc = documento.getString("Correo")
                 doctor.especialidad = documento.getString("Especialidad")
