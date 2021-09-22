@@ -3,34 +3,36 @@ package com.example.examen2b
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.content.DialogInterface
 import android.util.Log
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_mostrar_doctor.*
 import kotlinx.android.synthetic.main.activity_mostrar_paciente.*
 
 class MostrarPaciente : AppCompatActivity() {
-
+    val CODIGO_RESPUESTA_INTENT_EXPLICITO = 400
     var posicionItemSeleccionado = 0
     var nombrePacienteSeleccionado = ""
     var idPacienteSeleccionado = ""
+    var idDoctorPacienteSeleccionado =""
+    var edadPacienteSeleccionado = 0
+    var telefonoItemSSeleccionado= ""
+    var correoItemSeleccionado = ""
+    var cedulaItemSeleccionado= ""
+    var longitudItemSeleccionado= 0.0
+    var LatitudItemSeleccionado= 0.0
     lateinit var ArregloPacientes: ArrayList<Paciente>
     lateinit var adaptador: ArrayAdapter<Paciente>
     lateinit var listViewPaciente: ListView
     private lateinit var PacienteArrayList:ArrayList<Paciente>
-    var PosisionItemPaciente =0
-    companion object{
-        var idPaciente=0
-    }
+
     var adaptadorPaciente: ArrayAdapter<*>?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +49,10 @@ class MostrarPaciente : AppCompatActivity() {
                 paciente.idPaciente = documento.id
                 paciente.nombrePaciente = documento.getString("Nombre")
                 paciente.cedulaPaciente = documento.getString("Cedula")
+                paciente.edadPaciente = documento.getLong("Edad")!!.toInt()
                 paciente.telefonoPaciente = documento.getString("Telefono")
+                paciente.longitud = documento.getDouble("Longitud")
+                paciente.latitud = documento.getDouble("Latitud")
                 paciente.correoPaciente = documento.getString("Correo")
                 paciente.idDoctor = documento.getString("IdDoctor")
                 pacientes.add(paciente)
@@ -65,6 +70,8 @@ class MostrarPaciente : AppCompatActivity() {
             val intent: Intent = Intent(this, RegistrarPaciente::class.java)
             startActivity(intent)
         }
+        registerForContextMenu(lv_paciente)
+
     }
     override fun onCreateContextMenu(
         menu: ContextMenu?,
@@ -72,59 +79,108 @@ class MostrarPaciente : AppCompatActivity() {
         menuInfo: ContextMenu.ContextMenuInfo?
     ) {
         super.onCreateContextMenu(menu, v, menuInfo)
-
         val inflater = menuInflater
         inflater.inflate(R.menu.menupaciente,menu)
-
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
-        val id = info.position
-        PosisionItemPaciente = id
-       // idPaciente = adaptadorPaciente!!.getItem(PosisionItemPaciente)!!
+        posicionItemSeleccionado = info.position
+
     }
+
     override fun onContextItemSelected(item: MenuItem): Boolean {
 
-        var adaptPaciente = adaptadorPaciente!!.getItem(PosisionItemPaciente)
+        adaptador.notifyDataSetChanged()
+        var idElemento = ArregloPacientes[posicionItemSeleccionado]
 
-        return when(item?.itemId){
+        val db = Firebase.firestore
+        val referencia = db.collection("Paciente")
+        val pacienteSeleccionado = listViewPaciente.getItemAtPosition(posicionItemSeleccionado) as Paciente
+        nombrePacienteSeleccionado = pacienteSeleccionado.nombrePaciente.toString()
+        idPacienteSeleccionado = pacienteSeleccionado.idPaciente.toString()
+        idDoctorPacienteSeleccionado = pacienteSeleccionado.idDoctor.toString()
+       // edadPacienteSeleccionado = pacienteSeleccionado.edadPaciente.toString().toInt()
+        telefonoItemSSeleccionado= pacienteSeleccionado.telefonoPaciente.toString()
+        correoItemSeleccionado = pacienteSeleccionado.correoPaciente.toString()
+        cedulaItemSeleccionado= pacienteSeleccionado.cedulaPaciente.toString()
+        longitudItemSeleccionado= pacienteSeleccionado.longitud.toString().toDouble()
+        LatitudItemSeleccionado= pacienteSeleccionado.latitud.toString().toDouble()
+
+
+        listViewPaciente.adapter = adaptador
+
+        val cancelarClick = { _: DialogInterface, _: Int ->
+            Toast.makeText(this, android.R.string.cancel, Toast.LENGTH_LONG).show()
+        }
+        val eliminarPaciente = { _: DialogInterface, _: Int ->
+            Log.i("firebase", "Nombre: $nombrePacienteSeleccionado")
+            referencia.document(idPacienteSeleccionado)
+                .delete()
+                .addOnSuccessListener { Log.i("firebase", "DocumentSnapshot successfully deleted!") }
+                .addOnFailureListener { e -> Log.i("firebase", "Error deleting document", e) }
+            ArregloPacientes.remove(pacienteSeleccionado)
+            adaptador.notifyDataSetChanged()
+            Toast.makeText(this, "Paciente eliminado", Toast.LENGTH_LONG).show()
+        }
+
+        return when(item.itemId){
 
 
             //Eliminar
             R.id.id_item_eliminar -> {
-              /*  if(BasesDeDatos.TablaPaciente!=null){
+                val advertencia = android.app.AlertDialog.Builder(this)
+                advertencia.setTitle("Eliminar")
+                advertencia.setMessage("Seguro que desea eliminar?")
+                advertencia.setNegativeButton(
+                    "No",
+                    DialogInterface.OnClickListener(function = cancelarClick)
+                )
+                advertencia.setPositiveButton(
+                    "Si", DialogInterface.OnClickListener(
 
-                    AlertDialog.Builder(this).apply {//mensaje de alerta para confirmar si desea eliminar
-                        setTitle("Alerta")
-                        setMessage("¿Desea eliminar Paciente?")
-                        setPositiveButton("Si"){ _: DialogInterface, _: Int ->
-                            BasesDeDatos.TablaPaciente!!.eliminarPaciente(adaptPaciente!!.idPaciente) //con esta linea elimino el paciente seleccionado
-                            adaptadorPaciente?.remove(adaptadorPaciente!!.getItem(PosisionItemPaciente));
-
-                        }
-                        setNegativeButton("No", null)
-                    }.show()
-
-
-                }*/
+                        function = eliminarPaciente
+                    )
+                )
+                advertencia.show()
                 return true
             }
-
             //Editar
             R.id.id_iten_editar-> {
 
-                if (adaptPaciente != null) {
-                    // intent
-                }
+                abrirActividadporId(ActualizarPaciente::class.java, idElemento)
+                return true
+            }
+            //mostrar Ubicacion
+            R.id.id_ubicacion ->{
+                abrirActiviadUbicacion(Ubicacion::class.java, idElemento)
 
                 return true
             }
-
-
 
             else -> super.onContextItemSelected(item)
         }
 
     }
 
-
+    fun abrirActividadporId(
+        clase: Class<*>,
+        paciente: Paciente
+    ){
+        val intentExplicito = Intent(
+            this,
+            clase
+        )
+        intentExplicito.putExtra("Paciente", paciente)
+        startActivityForResult(intentExplicito,CODIGO_RESPUESTA_INTENT_EXPLICITO)
+    }
+    fun abrirActiviadUbicacion(
+        clase: Class<*>,
+        paciente: Paciente
+    ){
+        val intentExplicito = Intent(
+            this,
+            clase
+        )
+        intentExplicito.putExtra("Paciente", paciente)
+        startActivityForResult(intentExplicito, CODIGO_RESPUESTA_INTENT_EXPLICITO)
+    }
 
 }
