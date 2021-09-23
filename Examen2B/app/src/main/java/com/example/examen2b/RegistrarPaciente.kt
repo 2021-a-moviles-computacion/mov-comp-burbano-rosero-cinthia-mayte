@@ -90,6 +90,7 @@ class RegistrarPaciente : AppCompatActivity() {
         edt_latitud.setText("")
     }
     fun crearPaciente(){
+        validarCampos()
         val nuevoPaciente= hashMapOf<String,Any>(
             "IdDoctor" to edit_id_doctor.text.toString(),
             "Cedula" to edit_cedulaPaciente.text.toString(),
@@ -109,6 +110,7 @@ class RegistrarPaciente : AppCompatActivity() {
             .addOnFailureListener {  }
 
     }
+
     fun inicializarFirebase() {
         FirebaseApp.initializeApp(this)
         firebaseDatabase = FirebaseDatabase.getInstance()

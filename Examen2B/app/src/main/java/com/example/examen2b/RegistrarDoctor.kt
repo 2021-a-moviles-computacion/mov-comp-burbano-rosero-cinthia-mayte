@@ -34,7 +34,7 @@ class RegistrarDoctor : AppCompatActivity() {
         botonGuardar.setOnClickListener {
             val nombre= editText_nombre_doctor.text.toString()
             val cedula= editText_cedula_doctor.text.toString()
-             val editEdad = editText_edad_doctor.text.toString().toInt()
+            val editEdad = editText_edad_doctor.text.toString().toInt()
             val telefono= editText_telefono_doctor.text.toString()
             val correo= editText_correo_doctor.text.toString()
             val especialidadD=editText_especialidad.text.toString()
